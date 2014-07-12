@@ -1,5 +1,5 @@
 {
-  "name": "vim-instant-preview",
+  "name": "instant-preview-server",
   "version": "0.0.1",
   "description": "Instant preview server for instant-preview vim plugin",
   "main": "index.js",
