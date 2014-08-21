@@ -3,7 +3,7 @@
   "scripts": {
     "start": "node server.js"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Server that recieves the changes and emit the event.",
   "main": "index.js",
   "devDependencies": {},
