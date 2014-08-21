@@ -2,24 +2,39 @@
  * Module dependencies
  */
 
-var koa = require('koa');
-var app = module.exports = koa();
-var port = 8090;
-var debug = require('debug')('vim-preview-app');
-var route = require('koa-route');
-var parse = require('./lib/parser');
+var http = require('http');
+var parse = require('./lib/parse');
+var Emitter = require('events').EventEmitter;
+var inherits = require('util').inherits;
 
-app.use(route.put('/', function *(){
+module.exports = Server;
 
-  var preview = yield parse(this);
+function Server() {
 
-  debug('filename', preview.filename);
+  this._server = http.createServer(this.callback.bind(this));
 
-  app.emit('preview', preview);
-  this.body = { status: 'success' };
+}
 
-}));
+inherits(Server, Emitter);
 
-app.listen(port);
+Server.prototype.listen = function(port) {
+  this._server.listen(port);
+  console.log('Listening at %s', port);
+};
 
-console.log('Vim Preview App is Listening to %s', port);
+Server.prototype.callback = function(req, res){
+
+  if ('PUT' !== req.method) return res.end();
+
+  var self = this;
+
+  parse(req, function(err, result) {
+    if (err) {
+      throw new Error(err);
+    } else {
+      self.emit('preview', result);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ status: 'success' }));
+    }
+  });
+};

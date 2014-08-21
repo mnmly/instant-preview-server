@@ -1,23 +1,26 @@
 {
   "name": "instant-preview-server",
-  "version": "0.0.1",
-  "description": "Instant preview server for instant-preview vim plugin",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
+  },
+  "version": "1.0.0",
+  "description": "Server that recieves the changes and emit the event.",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mnmly/instant-preview-server.git"
   },
   "keywords": [
-    "vim",
-    "preview",
-    "instant",
-    "jsbin"
+    "preview"
   ],
   "author": "Hiroaki Yamane",
   "license": "MIT",
   "dependencies": {
-    "debug": "~1.0.3",
-    "koa-route": "~1.1.4",
-    "raw-body": "~1.2.2",
-    "koa": "~0.8.1"
-  }
+    "raw-body": "~1.3.0"
+  },
+  "bugs": {
+    "url": "https://github.com/mnmly/instant-preview-server/issues"
+  },
+  "homepage": "https://github.com/mnmly/instant-preview-server"
 }
