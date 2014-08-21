@@ -18,6 +18,7 @@ function Server() {
 inherits(Server, Emitter);
 
 Server.prototype.listen = function(port) {
+  port = port || process.env.PREVIEW_PORT || 8090;
   this._server.listen(port);
   console.log('Listening at %s', port);
 };
